@@ -26,6 +26,12 @@ public class Main extends Application {
         Label label1 = new Label("1) Add the code required to make this button print out \"Hello\" to the console when it is clicked. (5 points)");
         label1.setWrapText(true);
         Button button1 = new Button("Say Hello");
+        button1.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                System.out.println("Hello");
+            }
+        });
         button1.setMaxWidth(Double.MAX_VALUE);
         Label label2 = new Label("2) This button should change it's name to \"Clicked\" after you clicked it as well as the number of clicks (how many times had button has been clicked). (10 points)");
         label2.setWrapText(true);
