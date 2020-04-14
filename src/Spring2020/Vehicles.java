@@ -1,5 +1,7 @@
 package Spring2020;
 
+import static java.lang.String.format;
+
 public class Vehicles {
     private double price = 100000;
     private double mileage;
@@ -26,15 +28,26 @@ class Porsche extends Vehicles
 {
     public Porsche()
     {
-        System.out.println("The Porsche's price is: " + this.getPrice());
+        System.out.println("The Porsche's price is: $" + format("%.2f",this.getPrice()));
     }
 }
 
 class Prius extends Vehicles
 {
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public Prius(double price, double mlg)
     {
         this.setPrice(price);
         this.setMileage(mlg);
     }
+
 }

@@ -7,6 +7,7 @@ import javafx.event.EventHandler;
 import javafx.event.WeakEventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -67,13 +68,6 @@ public class Main extends Application {
         Label label5 = new Label("5) When the button \"New Prius\" is clicked, a new object of type Prius with a price of $35000 and a mileage of 54 miles/gallon should be created (using a constructor that accepts the price and mileage as arguments). The object should be derived from the class Vehicle. The constructor should not print anything to the console. (15 points)");
         label5.setWrapText(true);
         Button button5 = new Button("New Prius");
-        button5.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Prius new2 = new Prius(35000, 54);
-                newVehicles.add(new2);
-            }
-        });
         button5.setMaxWidth(Double.MAX_VALUE);
 
         Label label6 = new Label("6) Create a button that will add the mileage to the Porsche object created in 4) reading the value form the text field below. The button should read \"Add mileage for Porsche\" and replace the black rectangle. Use a setter medhod to set the mileage for the Porsche object. The setter method has to be written in the Vehicle class. (25 points)");
@@ -124,6 +118,23 @@ public class Main extends Application {
         Label label8 = new Label("Bonus) When you click this button, it should open up a dialog box showing the content of a (not yet existing) name field of the Prius object. Only Prius objects should have that field. You need to set the content of the name field before opening the dialog box. (10 bonus points)");
         label8.setWrapText(true);
         Button button8 = new Button("Bonus: Show Prius name");
+        button5.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                Prius new2 = new Prius(35000, 54);
+                newVehicles.add(new2);
+
+                button8.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        new2.setName("Bob");
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setContentText(new2.getName());
+                        alert.showAndWait();
+                    }
+                });
+            }
+        });
         button8.setMaxWidth(Double.MAX_VALUE);
 
         //setup inner grid pane layout
@@ -167,31 +178,7 @@ public class Main extends Application {
                 }
             }
         });
-
-        //action handler for button 4
-        /*button4.setOnAction(e -> {
-            //create new object of type Porsche with price $100000 (derived from class Vehicle)
-
-        });
-
-        //action handler for button 5
-        button5.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                //create new object of type Prius with price of $35000 and a mileage of 54 miles/gallon (derived from class Vehicle)
-            }
-
-        }); */
-
-        //action handler for button 7
-        /*button7.setOnAction(e -> {
-            //calculate average mileage created using a for-loop (hint: you have to put the 2 objects into a structure that can be looped over like array or ArrayList
-
-        });*/
-
-
-        button8.disableProperty()
-                .bind(Bindings.isEmpty(inputField1.textProperty()));
+        
 
         //setup outer layout
         BorderPane border = new BorderPane();
