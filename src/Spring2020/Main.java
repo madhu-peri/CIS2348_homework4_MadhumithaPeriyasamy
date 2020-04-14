@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.event.WeakEventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -33,22 +34,37 @@ public class Main extends Application {
             }
         });
         button1.setMaxWidth(Double.MAX_VALUE);
+
         Label label2 = new Label("2) This button should change it's name to \"Clicked\" after you clicked it as well as the number of clicks (how many times had button has been clicked). (10 points)");
         label2.setWrapText(true);
         Button button2 = new Button("Click me");
+        button2.setOnAction(new EventHandler<ActionEvent>() {
+            int count = 0;
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                if(actionEvent.getSource() == button2){
+                    count++;
+                    button2.setText("Clicked (" + count + ")");
+                }
+            }
+        });
         button2.setMaxWidth(Double.MAX_VALUE);
+
         Label label3 = new Label("3) This button generates an error when it is clicked. Fix it! (5 points)");
         label3.setWrapText(true);
         Button button3 = new Button("Click me too");
         button3.setMaxWidth(Double.MAX_VALUE);
+
         Label label4 = new Label("4) When the button \"New Porsche\" is clicked, a new object of type Porsche with a price of $100000 should be created. The object should be derived from the class Vehicle. The constructor of the class Porsche should print the price of the new Porsche object to the console. The printing should involve the usage of a getter method for the price. This getter method has to be written in the Vehicle class. (20 points)");
         label4.setWrapText(true);
         Button button4 = new Button("New Porsche");
         button4.setMaxWidth(Double.MAX_VALUE);
+
         Label label5 = new Label("5) When the button \"New Prius\" is clicked, a new object of type Prius with a price of $35000 and a mileage of 54 miles/gallon should be created (using a constructor that accepts the price and mileage as arguments). The object should be derived from the class Vehicle. The constructor should not print anything to the console. (15 points)");
         label5.setWrapText(true);
         Button button5 = new Button("New Prius");
         button5.setMaxWidth(Double.MAX_VALUE);
+
         Label label6 = new Label("6) Create a button that will add the mileage to the Porsche object created in 4) reading the value form the text field below. The button should read \"Add mileage for Porsche\" and replace the black rectangle. Use a setter medhod to set the mileage for the Porsche object. The setter method has to be written in the Vehicle class. (25 points)");
         label6.setWrapText(true);
         TextField inputField1 = new TextField();
@@ -59,10 +75,12 @@ public class Main extends Application {
         placeHolder.setY(20);
         placeHolder.setWidth(100);
         placeHolder.setHeight(20);
+
         Label label7 = new Label("7) When the button \"Average Mileage\" is pressed, the average mileage for the 2 Vehicle objects created in 4) and 5) should be listed at the console. The calculation should make use of an array or ArrayList  and involve a loop to allow for the possibility to have more Vehicle objects added into the calculation. (10 points)");
         label7.setWrapText(true);
         Button button7 = new Button("Average Milage");
         button7.setMaxWidth(Double.MAX_VALUE);
+
         Label label8 = new Label("Bonus) When you click this button, it should open up a dialog box showing the content of a (not yet existing) name field of the Prius object. Only Prius objects should have that field. You need to set the content of the name field before opening the dialog box. (10 bonus points)");
         label8.setWrapText(true);
         Button button8 = new Button("Bonus: Show Prius name");
@@ -104,7 +122,7 @@ public class Main extends Application {
             public void handle(ActionEvent actionEvent) {
                 int[] myarray = {3, 4, 5, 6};
 
-                for (int i = 0; i < 5; i++) {
+                for (int i = 0; i < 4; i++) {
                     System.out.println(myarray[i]);
                 }
             }
