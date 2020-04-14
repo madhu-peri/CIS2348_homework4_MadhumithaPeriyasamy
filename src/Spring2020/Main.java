@@ -14,6 +14,8 @@ import javafx.scene.layout.*;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 public class Main extends Application {
 
     public static void main(String[] args) {
@@ -22,6 +24,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+
+        ArrayList<Vehicles> newVehicles = new ArrayList<>();
 
         //create UI elements
         Label label1 = new Label("1) Add the code required to make this button print out \"Hello\" to the console when it is clicked. (5 points)");
@@ -67,6 +71,7 @@ public class Main extends Application {
             @Override
             public void handle(ActionEvent actionEvent) {
                 Prius new2 = new Prius(35000, 54);
+                newVehicles.add(new2);
             }
         });
         button5.setMaxWidth(Double.MAX_VALUE);
@@ -79,6 +84,7 @@ public class Main extends Application {
             @Override
             public void handle(ActionEvent actionEvent) {
                 Porsche new1 = new Porsche();
+                newVehicles.add(new1);
                 inputField1.setOnAction(new EventHandler<ActionEvent>() {
                     double mlg;
                     @Override
@@ -101,7 +107,18 @@ public class Main extends Application {
 
         Label label7 = new Label("7) When the button \"Average Mileage\" is pressed, the average mileage for the 2 Vehicle objects created in 4) and 5) should be listed at the console. The calculation should make use of an array or ArrayList  and involve a loop to allow for the possibility to have more Vehicle objects added into the calculation. (10 points)");
         label7.setWrapText(true);
-        Button button7 = new Button("Average Milage");
+        Button button7 = new Button("Average Mileage");
+        button7.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                double avgmlg = 0;
+                for(int i = 0; i < newVehicles.size(); i++)
+                {
+                    avgmlg += newVehicles.get(i).getMileage();
+                }
+                System.out.println("The average mileage is: " + (avgmlg/newVehicles.size()));
+            }
+        });
         button7.setMaxWidth(Double.MAX_VALUE);
 
         Label label8 = new Label("Bonus) When you click this button, it should open up a dialog box showing the content of a (not yet existing) name field of the Prius object. Only Prius objects should have that field. You need to set the content of the name field before opening the dialog box. (10 bonus points)");
@@ -167,10 +184,10 @@ public class Main extends Application {
         }); */
 
         //action handler for button 7
-        button7.setOnAction(e -> {
+        /*button7.setOnAction(e -> {
             //calculate average mileage created using a for-loop (hint: you have to put the 2 objects into a structure that can be looped over like array or ArrayList
 
-        });
+        });*/
 
 
         button8.disableProperty()
