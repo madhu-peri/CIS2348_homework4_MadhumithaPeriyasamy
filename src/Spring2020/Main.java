@@ -63,18 +63,41 @@ public class Main extends Application {
         Label label5 = new Label("5) When the button \"New Prius\" is clicked, a new object of type Prius with a price of $35000 and a mileage of 54 miles/gallon should be created (using a constructor that accepts the price and mileage as arguments). The object should be derived from the class Vehicle. The constructor should not print anything to the console. (15 points)");
         label5.setWrapText(true);
         Button button5 = new Button("New Prius");
+        button5.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                Prius new2 = new Prius(35000, 54);
+            }
+        });
         button5.setMaxWidth(Double.MAX_VALUE);
 
         Label label6 = new Label("6) Create a button that will add the mileage to the Porsche object created in 4) reading the value form the text field below. The button should read \"Add mileage for Porsche\" and replace the black rectangle. Use a setter medhod to set the mileage for the Porsche object. The setter method has to be written in the Vehicle class. (25 points)");
         label6.setWrapText(true);
         TextField inputField1 = new TextField();
-        //Drawing a Rectangle as placeholder
-        Rectangle placeHolder = new Rectangle();
-        //Setting the properties of the rectangle
-        placeHolder.setX(10);
-        placeHolder.setY(20);
-        placeHolder.setWidth(100);
-        placeHolder.setHeight(20);
+        Button button6 = new Button("Add mileage for Porsche");
+        button4.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                Porsche new1 = new Porsche();
+                inputField1.setOnAction(new EventHandler<ActionEvent>() {
+                    double mlg;
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        mlg = Double.parseDouble(inputField1.getText());
+
+                        button6.setOnAction(new EventHandler<ActionEvent>() {
+                            @Override
+                            public void handle(ActionEvent actionEvent) {
+                                new1.setMileage(mlg);
+                            }
+                        });
+                    }
+                });
+
+            }
+        });
+        button6.setMaxWidth(Double.MAX_VALUE);
+
 
         Label label7 = new Label("7) When the button \"Average Mileage\" is pressed, the average mileage for the 2 Vehicle objects created in 4) and 5) should be listed at the console. The calculation should make use of an array or ArrayList  and involve a loop to allow for the possibility to have more Vehicle objects added into the calculation. (10 points)");
         label7.setWrapText(true);
@@ -110,7 +133,7 @@ public class Main extends Application {
         gridPane.add(label5, 0, 4, 1, 1);
         gridPane.add(button5, 1, 4, 1, 1);
         gridPane.add(label6, 0, 5, 1, 1);
-        gridPane.add(placeHolder, 1, 5, 1, 1);
+        gridPane.add(button6, 1, 5, 1, 1);
         gridPane.add(inputField1, 0, 6, 1, 1);
         gridPane.add(label7, 0, 7, 1, 1);
         gridPane.add(button7, 1, 7, 1, 1);
@@ -129,7 +152,7 @@ public class Main extends Application {
         });
 
         //action handler for button 4
-        button4.setOnAction(e -> {
+        /*button4.setOnAction(e -> {
             //create new object of type Porsche with price $100000 (derived from class Vehicle)
 
         });
@@ -141,7 +164,7 @@ public class Main extends Application {
                 //create new object of type Prius with price of $35000 and a mileage of 54 miles/gallon (derived from class Vehicle)
             }
 
-        });
+        }); */
 
         //action handler for button 7
         button7.setOnAction(e -> {
