@@ -77,25 +77,19 @@ public class Main extends Application {
         button4.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                Porsche new1 = new Porsche();
+                Porsche new1 = new Porsche(100000);
                 newVehicles.add(new1);
-                inputField1.setOnAction(new EventHandler<ActionEvent>() {
+                button6.setOnAction(new EventHandler<ActionEvent>() {
                     double mlg;
                     @Override
                     public void handle(ActionEvent actionEvent) {
                         mlg = Double.parseDouble(inputField1.getText());
-
-                        button6.setOnAction(new EventHandler<ActionEvent>() {
-                            @Override
-                            public void handle(ActionEvent actionEvent) {
-                                new1.setMileage(mlg);
-                            }
-                        });
+                        new1.setMileage(mlg);
                     }
                 });
-
             }
         });
+
         button6.setMaxWidth(Double.MAX_VALUE);
 
 
@@ -178,7 +172,7 @@ public class Main extends Application {
                 }
             }
         });
-        
+
 
         //setup outer layout
         BorderPane border = new BorderPane();

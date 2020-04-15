@@ -3,7 +3,7 @@ package Spring2020;
 import static java.lang.String.format;
 
 public class Vehicles {
-    private double price = 100000;
+    private double price;
     private double mileage;
 
     public double getMileage() {
@@ -26,8 +26,10 @@ public class Vehicles {
 
 class Porsche extends Vehicles
 {
-    public Porsche()
+    public Porsche(double price)
+
     {
+        this.setPrice(price);
         System.out.println("The Porsche's price is: $" + format("%.2f",this.getPrice()));
     }
 }
